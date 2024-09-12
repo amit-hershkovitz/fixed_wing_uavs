@@ -10,7 +10,7 @@ def download_video(destination, source):
     try:
         subprocess.run([
             'yt-dlp',
-            '-o', f'{destination}/%(title)s.%(ext)s',
+            '-o', f'{destination}/temp.%(ext)s',
             source
         ], check=True)
         print(f"Video downloaded successfully to {destination}.")
