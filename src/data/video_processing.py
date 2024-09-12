@@ -4,7 +4,7 @@ import subprocess
 import cv2
 
 
-def download_video(source, destination):
+def download_video(source: str, destination: str) -> str:
     os.makedirs(destination, exist_ok=True)
 
     try:
@@ -24,7 +24,7 @@ def download_video(source, destination):
 def extract_video_frames(source_video: str,
                          destination: str,
                          video_id: int,
-                         extraction_frequency: int = 30):
+                         extraction_frequency: int = 30) -> list[str, ...]:
 
     cap = cv2.VideoCapture(source_video)
 
@@ -50,7 +50,7 @@ def extract_video_frames(source_video: str,
     return paths
 
 
-def reject_frames(paths: list[str, ...]):
+def reject_frames(paths: list[str, ...]) -> list[str, ...]:
     kept_paths = []
 
     for path in paths:
