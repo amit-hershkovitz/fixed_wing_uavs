@@ -1,26 +1,29 @@
 from abc import ABC, abstractmethod
 import os
-import subprocess
+from shutil import copy
 
-from video_processing import download_video, extract_video_frames
+from video_processing import download_video, extract_video_frames, reject_frames
 
 
 class ExtractStrategy(ABC):
     @abstractmethod
-    def extract(self, source: str, destination: str, source_id: int):
+    def extract(self, source: str, destination: str, source_id: int) -> list[str, ...]:
         pass
 
 
 class YoutubeDownloadStrategy(ExtractStrategy):
-    def extract(self, source: str, destination: str, source_id):
-        video = download_video(source, destination)
-        image_paths = extract_video_frames(video, destination, source_id)
-
+    def extract(self, source: str, destination: str, source_id: int) -> list[str, ...]:
+        video_path = download_video(source, destination)
+        image_paths = extract_video_frames(video_path, destination, source_id)
+        os.remove(video_path)
+        image_paths = reject_frames(image_paths)
         return image_paths
 
 
 class LocalImageStrategy(ExtractStrategy):
-    def extract(self, source: str, destination: str, source_id: int):
+    def extract(self, source: str, destination: str, source_id: int) -> list[str]:
         _, filename = os.path.split(source)
-        os.rename(source, os.path.join(destination, filename))
+        path = os.path.join(destination, filename)
+        copy(source, path)
 
+        return [path]
