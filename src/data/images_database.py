@@ -23,17 +23,17 @@ class ImagesDatabase:
     def create_empty_image_entry(self) -> int:
         create_time = time.strftime('%Y-%m-%d %H:%M:%S')
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
-            conn.cursor().execute(f"""
+            cursor = conn.cursor()
+            cursor.execute(f"""
                                 INSERT INTO Images (image_path, source_id, created)
                                 VALUES (NULL, NULL, '{create_time}')
                                 """
-                                  )
+                           )
             conn.commit()
 
-        return conn.cursor().lastrowid
+        return cursor.lastrowid
 
     def insert_image(self, image_id: int, image_path: str, source_type: str):
-
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
             conn.cursor().execute(f"""
                                 UPDATE Images 
@@ -41,7 +41,7 @@ class ImagesDatabase:
                                     source_type = '{source_type}'
                                 WHERE image_id = {image_id}
                                 """
-                                )
+                                  )
             conn.commit()
 
     def _create_data_sources_table(self):
@@ -54,7 +54,7 @@ class ImagesDatabase:
                                     added DATETIME
                                 )
                                 """
-                                )
+                                  )
             conn.commit()
 
     def _create_images_table(self):
@@ -67,7 +67,7 @@ class ImagesDatabase:
                                     source_id INTEGER
                                 )
                                 """
-                                )
+                                  )
             conn.commit()
 
 
