@@ -20,6 +20,27 @@ class ImagesDatabase:
                             """
                             )
 
+    def create_empty_image_entry(self) -> int:
+        create_time = time.strftime('%Y-%m-%d %H:%M:%S')
+        self.cursor.execute(f"""
+                            INSERT INTO Images (source_path, source_type, created)
+                            VALUES (NULL, NULL, '{create_time}')
+                            """
+                            )
+
+        image_id = self.cursor.lastrowid
+
+        return image_id
+
+    def insert_image(self, image_id: int, image_path: str, source_type: str):
+        self.cursor.execute(f"""
+                            UPDATE Images 
+                            SET source_path = '{image_path}'
+                                source_type = '{source_type}'
+                            WHERE image_id = {image_id}
+                            """
+                            )
+
     def _create_data_sources_table(self):
         self.cursor.execute("""
                             CREATE TABLE IF NOT EXISTS DataSources (
@@ -37,10 +58,11 @@ class ImagesDatabase:
                                 image_id INTEGER PRIMARY KEY AUTOINCREMENT,
                                 image_path TEXT UNIQUE,
                                 created DATETIME,
-                                source_id INTEGER,
-                                image_size INTEGER,
-                                image_width INTEGER,
-                                image_height INTEGER
+                                source_id INTEGER
                             )
                             """
                             )
+
+
+if __name__ == '__main__':
+    db = ImagesDatabase('/home/amit/codes/projects/python/fixed_wing_uavs/data', 'database')
