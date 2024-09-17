@@ -10,7 +10,7 @@ class ImagesDatabase:
         self._create_images_table()
         self._create_data_sources_table()
 
-    def add_source(self, source_path, source_type):
+    def insert_source(self, source_path, source_type):
         add_time = time.strftime('%Y-%m-%d %H:%M:%S')
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
             conn.cursor().execute(f"""
@@ -33,12 +33,12 @@ class ImagesDatabase:
 
         return cursor.lastrowid
 
-    def insert_image(self, image_id: int, image_path: str, source_type: str):
+    def insert_image(self, image_id: int, image_path: str, source_id: int):
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
             conn.cursor().execute(f"""
                                 UPDATE Images 
-                                SET source_path = '{image_path}'
-                                    source_type = '{source_type}'
+                                SET image_path = '{image_path}',
+                                    source_id = {source_id}
                                 WHERE image_id = {image_id}
                                 """
                                   )
@@ -71,7 +71,3 @@ class ImagesDatabase:
             conn.commit()
 
 
-if __name__ == '__main__':
-    db = ImagesDatabase('/home/amit/codes/projects/python/fixed_wing_uavs/data', 'database')
-    id = db.create_empty_image_entry()
-    print(id)
