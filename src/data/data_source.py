@@ -9,7 +9,7 @@ from transform_strategy import DefaultTransformStrategy
 from load_strategy import DefaultLoadStrategy
 
 
-class DataSource(ABC):
+class DataSource:
     def __init__(self,
                  database: ImagesDatabase,
                  source_id: int,
@@ -19,7 +19,6 @@ class DataSource(ABC):
                  extract_strategy,
                  transform_strategy,
                  load_strategy):
-
         self.database = database
         self.source_id = source_id
         self.source_path = source_path
@@ -46,9 +45,32 @@ VideoSource = partial(DataSource,
                       load_strategy=DefaultLoadStrategy
                       )
 
-
 LocalImageSource = partial(DataSource,
                            extract_strategy=LocalImageStrategy,
                            transform_strategy=DefaultTransformStrategy,
                            load_strategy=DefaultLoadStrategy
                            )
+
+
+class DataSourceFactory(ABC):
+    @abstractmethod
+    def create(self, database, source_id, source_path, source_type, added):
+        pass
+
+
+class VideoSourceFactory(DataSourceFactory):
+    def create(self, database, source_id, source_path, source_type, added):
+        return VideoSource(database=database,
+                           source_id=source_id,
+                           source_path=source_path,
+                           source_type=source_type,
+                           added=added)
+
+
+class LocalImageSourceFactory(DataSourceFactory):
+    def create(self, database, source_id, source_path, source_type, added):
+        return LocalImageSource(database=database,
+                                source_id=source_id,
+                                source_path=source_path,
+                                source_type=source_type,
+                                added=added)
