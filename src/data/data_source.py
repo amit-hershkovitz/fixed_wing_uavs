@@ -4,7 +4,9 @@ from datetime import datetime
 from functools import partial
 
 from images_database import ImagesDatabase
-from extract_strategy import YoutubeDownloadStrategy
+from extract_strategy import YoutubeDownloadStrategy, LocalImageStrategy
+from transform_strategy import DefaultTransformStrategy
+from load_strategy import DefaultLoadStrategy
 
 
 class DataSource(ABC):
@@ -40,4 +42,13 @@ class DataSource(ABC):
 
 VideoSource = partial(DataSource,
                       extract_stretegy=YoutubeDownloadStrategy,
+                      transform_strategy=DefaultTransformStrategy,
+                      load_strategy=DefaultLoadStrategy
                       )
+
+
+LocalImageSource = partial(DataSource,
+                           extract_strategy=LocalImageStrategy,
+                           transform_strategy=DefaultTransformStrategy,
+                           load_strategy=DefaultLoadStrategy
+                           )

@@ -5,12 +5,16 @@ from image_processing import convert_to_jpg
 
 class TransformStrategy(ABC):
     @abstractmethod
-    def transform(self, *image_paths):
+    def transform(self, image_paths: list[str, ...]) -> list[str, ...]:
         pass
 
 
-class DefaultTransform(TransformStrategy):
-    def transform(self, *image_paths):
+class DefaultTransformStrategy(TransformStrategy):
+    def transform(self, image_paths: list[str, ...]) -> list[str, ...]:
+        converted_paths = []
         for path in image_paths:
-            convert_to_jpg(path)
+            converted_path = convert_to_jpg(path)
+            converted_paths.append(converted_path)
+
+        return converted_paths
 
