@@ -44,6 +44,18 @@ class ImagesDatabase:
                                   )
             conn.commit()
 
+    def get_unprocessed_sources(self):
+        with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute(f"""
+                            SELECT DataSources.source_path, DataSources.source_type
+                            FROM DataSources
+                            LEFT JOIN Images ON DataSources.source_id = Images.source_id
+                            WHERE Images.source_id IS NULL
+                            """)
+
+        return cursor.fetchall()
+
     def _create_data_sources_table(self):
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
             conn.cursor().execute("""
@@ -69,5 +81,4 @@ class ImagesDatabase:
                                 """
                                   )
             conn.commit()
-
 
