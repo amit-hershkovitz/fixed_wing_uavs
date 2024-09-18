@@ -10,7 +10,7 @@ class ImagesDatabase:
         self._create_images_table()
         self._create_data_sources_table()
 
-    def insert_source(self, source_path, source_type):
+    def insert_source(self, source_path: str, source_type: str):
         add_time = time.strftime('%Y-%m-%d %H:%M:%S')
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
             conn.cursor().execute(f"""
@@ -47,12 +47,9 @@ class ImagesDatabase:
     def get_unprocessed_sources(self):
         with sqlite3.connect(f'{self.root_folder}/{self.database_name}.db') as conn:
             cursor = conn.cursor()
-            cursor.execute(f"""
-                            SELECT DataSources.source_path, DataSources.source_type
-                            FROM DataSources
-                            LEFT JOIN Images ON DataSources.source_id = Images.source_id
-                            WHERE Images.source_id IS NULL
-                            """)
+            cursor.execute(f""" SELECT DataSource.source_id, DataSources.source_path, DataSources.source_type, 
+            DataSource.added FROM DataSources LEFT JOIN Images ON DataSources.source_id = Images.source_id WHERE 
+            Images.source_id IS NULL """)
 
         return cursor.fetchall()
 
