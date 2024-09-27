@@ -46,8 +46,8 @@ class ImagesDatabase:
     def get_unprocessed_sources(self):
         with sqlite3.connect(self.database_path) as conn:
             cursor = conn.cursor()
-            cursor.execute(f""" SELECT DataSource.source_id, DataSources.source_path, DataSources.source_type, 
-            DataSource.added FROM DataSources LEFT JOIN Images ON DataSources.source_id = Images.source_id WHERE 
+            cursor.execute(f""" SELECT DataSources.source_id, DataSources.source_path, DataSources.source_type, 
+            DataSources.added FROM DataSources LEFT JOIN Images ON DataSources.source_id = Images.source_id WHERE 
             Images.source_id IS NULL """)
 
         return cursor.fetchall()
