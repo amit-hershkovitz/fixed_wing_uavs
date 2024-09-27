@@ -1,4 +1,6 @@
 import os
+import shutil
+
 from abc import ABC, abstractmethod
 from images_database import ImagesDatabase
 
@@ -19,6 +21,6 @@ class DefaultLoadStrategy(LoadStrategy):
         for path in source_paths:
             image_id = database.create_empty_image_entry()
             standardized_path = f'{destination}/{image_id}.jpg'
-            os.rename(path, standardized_path)
+            shutil.move(path, standardized_path)
             database.insert_image(image_id, standardized_path, source_id)
 
