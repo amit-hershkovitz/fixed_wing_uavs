@@ -10,6 +10,8 @@ def download_video(source: str, destination: str) -> str:
     try:
         subprocess.run([
             'yt-dlp',
+            '-f', 'bestvideo+bestaudio',
+            '--merge-output-format', 'mp4',
             '-o', f'{destination}/temp.%(ext)s',
             source
         ], check=True)
@@ -53,6 +55,8 @@ def extract_video_frames(source_video: str,
 def reject_frames(paths: list[str, ...]) -> list[str, ...]:
     kept_paths = []
 
+    terminate_rejection_process = False
+
     for path in paths:
         cv2.namedWindow('Image Candidate', cv2.WINDOW_NORMAL)
         cv2.setWindowProperty('Image Candidate', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
@@ -69,6 +73,12 @@ def reject_frames(paths: list[str, ...]) -> list[str, ...]:
             elif key == ord('d'):
                 os.remove(path)
                 break
+            elif key == ord('q'):
+                terminate_rejection_process = True
+                break
+
+        if terminate_rejection_process:
+            break
 
     cv2.destroyAllWindows()  # Close all OpenCV windows
 
