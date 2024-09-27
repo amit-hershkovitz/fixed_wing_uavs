@@ -25,22 +25,22 @@ class DataSource:
         self.source_type = source_type
         self.added = added
 
-        self._extract_strategy = extract_strategy
-        self._transform_strategy = transform_strategy
-        self._load_strategy = load_strategy
+        self._extract_strategy = extract_strategy()
+        self._transform_strategy = transform_strategy()
+        self._load_strategy = load_strategy()
 
-    def extract(self, destination):
-        self._extract_strategy.extract(self.source_path, destination)
+    def extract(self, destination) -> list[str, ...]:
+        return self._extract_strategy.extract(self.source_path, destination, self.source_id)
 
-    def transform(self, destination, *paths):
-        self._transform_strategy.transform()
+    def transform(self, paths) -> list[str, ...]:
+        return self._transform_strategy.transform(paths)
 
-    def load(self):
-        self._load_strategy.load()
+    def load(self, source_paths, destination):
+        self._load_strategy.load(source_paths, destination, self.source_id, self.database)
 
 
 VideoSource = partial(DataSource,
-                      extract_stretegy=YoutubeDownloadStrategy,
+                      extract_strategy=YoutubeDownloadStrategy,
                       transform_strategy=DefaultTransformStrategy,
                       load_strategy=DefaultLoadStrategy
                       )
