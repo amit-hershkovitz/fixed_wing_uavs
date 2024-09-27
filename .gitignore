@@ -1,0 +1,8 @@
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.JPG
+
+./data/
+./cloud/
