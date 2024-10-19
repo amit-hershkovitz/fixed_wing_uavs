@@ -8,9 +8,13 @@
   <img src="https://img.shields.io/badge/Kaggle-white?style=plastic&logo=Kaggle&logoColor=blue" alt="Kaggle Badge">
 </p>
 
-Description
+Motivation
 ---
 Driven by the defense, agriculture, and surveying sectors, the use of fixed-wing **U**nmanned **A**erial **V**ehicles (UAVs) has grown significantly in recent years. Alongside this rapid expansion, detecting fixed-wing aircraft in images or video streams has become essential for maintaining safe and efficient airspace operations. This capability plays a crucial role in preventing collisions, managing air traffic, ensuring security, and enhancing UAV coordination.
 
-In the following project, a dataset of 735 unique fixed-wing UAVs images was collected and annotated. The dataset was used in order to train an object-detection deep learning model with YOLO architecture. 
+The goal of this project is to create a deep learning model capable of detecting fixed-wing UAVs in real time, suited for deployment on edge devices.
+
+Dataset
+---
+A dataset of 735 unique fixed-wing UAVs images was collected and annotated with bounding boxes for detection tasks. The annotation process was carried out using [Label Studio](https://labelstud.io/). An initial YOLO model trained on a small subset of the data was integrated as ML-backend for "human-in-the-loop" annotations.
 
