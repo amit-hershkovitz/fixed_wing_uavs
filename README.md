@@ -7,6 +7,9 @@
   <img src="https://img.shields.io/badge/Jupyter-white?style=plastic&logo=Jupyter&logoColor=orange" alt="Jupyter Badge">
   <img src="https://img.shields.io/badge/Kaggle-white?style=plastic&logo=Kaggle&logoColor=blue" alt="Kaggle Badge">
 </p>
+<p align="center">
+<img src="./images/52.jpg" width=320></img>
+</p>
 
 Motivation
 ---
