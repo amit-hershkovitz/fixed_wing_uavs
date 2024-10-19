@@ -1,11 +1,12 @@
-<h1 style="text-align:center;">Fixed-Wing Unmanned Aerial Vehicles (UAVs) Detection </h1>
-
-![Static Badge](https://img.shields.io/badge/Python-blue?style=plastic&logo=Python&logoColor=yellow)
-![Static Badge](https://img.shields.io/badge/SQLite-white?style=plastic&logo=SQLite&logoColor=darkblue)
-![Static Badge](https://img.shields.io/badge/Ultralytics-purple?style=plastic)
-![Static Badge](https://img.shields.io/badge/LabelStudio-lightpink?style=plastic)
-![Static Badge](https://img.shields.io/badge/Jupyter-white?style=plastic&logo=Jupyter&logoColor=orange)
-![Static Badge](https://img.shields.io/badge/Kaggle-white?style=plastic&logo=Kaggle&logoColor=blue)
+<h1 align=center>Fixed-Wing Unmanned Aerial Vehicles (UAVs) Detection </h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-blue?style=plastic&logo=Python&logoColor=yellow" alt="Python Badge">
+  <img src="https://img.shields.io/badge/SQLite-white?style=plastic&logo=SQLite&logoColor=darkblue" alt="SQLite Badge">
+  <img src="https://img.shields.io/badge/Ultralytics-purple?style=plastic" alt="Ultralytics Badge">
+  <img src="https://img.shields.io/badge/LabelStudio-lightpink?style=plastic" alt="LabelStudio Badge">
+  <img src="https://img.shields.io/badge/Jupyter-white?style=plastic&logo=Jupyter&logoColor=orange" alt="Jupyter Badge">
+  <img src="https://img.shields.io/badge/Kaggle-white?style=plastic&logo=Kaggle&logoColor=blue" alt="Kaggle Badge">
+</p>
 
 Description
 ---
