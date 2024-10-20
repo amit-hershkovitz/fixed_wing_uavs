@@ -19,5 +19,5 @@ The goal of this project is to create a deep learning model capable of detecting
 
 Dataset
 ---
-A dataset of 735 unique fixed-wing UAVs images was collected and annotated with bounding boxes for detection tasks. The annotation process was carried out using [Label Studio](https://labelstud.io/). An initial YOLO model trained on a small subset of the data was integrated as ML-backend for "human-in-the-loop" annotations.
+For the sake of this project a dataset of 735 unique fixed-wing UAVs images was collected and annotated with bounding boxes for detection tasks. The annotation process was carried out using [Label Studio](https://labelstud.io/). An initial YOLO model trained on a small subset of the data was integrated as ML-backend for "human-in-the-loop" annotations.
 
