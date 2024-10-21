@@ -6,6 +6,8 @@
   <img src="https://img.shields.io/badge/LabelStudio-lightpink?style=plastic" alt="LabelStudio Badge">
   <img src="https://img.shields.io/badge/Jupyter-white?style=plastic&logo=Jupyter&logoColor=orange" alt="Jupyter Badge">
   <img src="https://img.shields.io/badge/Kaggle-white?style=plastic&logo=Kaggle&logoColor=blue" alt="Kaggle Badge">
+  <img alt="Static Badge" src="https://img.shields.io/badge/MLFlow-white?style=plastic&logo=MLFlow">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Ray-white?style=plastic&logo=Ray">
 </p>
 <p align="center">
 <img src="./images/52.jpg" width=320></img>
@@ -19,5 +21,9 @@ The goal of this project is to create a deep learning model capable of detecting
 
 Dataset
 ---
-For the sake of this project a dataset of 735 unique fixed-wing UAVs images was collected and annotated with bounding boxes for detection tasks. The annotation process was carried out using [Label Studio](https://labelstud.io/). An initial YOLO model trained on a small subset of the data was integrated as ML-backend for "human-in-the-loop" annotations.
+A dataset of 735 unique fixed-wing UAVs images was collected and annotated with bounding boxes for detection tasks. The annotation process was carried out using [Label Studio](https://labelstud.io/). An initial YOLO model trained on a small subset of the data was integrated as ML-backend for "human-in-the-loop" annotations.
+
+Model
+---
+A lightweight YOLO model (2.6M parameters) was trained on the dataset using [Ultralytics](https://docs.ultralytics.com/). During model development, experiments were tracked using [MLFlow](https://mlflow.org/), and training parameters were tuned using [Ray Tune](https://docs.ray.io/en/latest/tune/index.html).
 
