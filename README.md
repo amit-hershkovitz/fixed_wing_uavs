@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/LabelStudio-lightpink?style=plastic" alt="LabelStudio Badge">
   <img src="https://img.shields.io/badge/Jupyter-white?style=plastic&logo=Jupyter&logoColor=orange" alt="Jupyter Badge">
   <img src="https://img.shields.io/badge/Kaggle-white?style=plastic&logo=Kaggle&logoColor=blue" alt="Kaggle Badge">
-  <img alt="Static Badge" src="https://img.shields.io/badge/MLFlow-white?style=plastic&logo=MLFlow">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Weights%20%26%20Biases-black?style=plastic&logo=weightsandbiases&logoColor=yellow">
   <img alt="Static Badge" src="https://img.shields.io/badge/Ray-white?style=plastic&logo=Ray">
 </p>
 <p align="center">
@@ -25,5 +25,5 @@ A dataset of 735 unique fixed-wing UAVs images was collected and annotated with 
 
 Model
 ---
-A lightweight YOLO model (2.6M parameters) was trained on the dataset using [Ultralytics](https://docs.ultralytics.com/). During model development, experiments were tracked using [MLFlow](https://mlflow.org/), and training parameters were tuned using [Ray Tune](https://docs.ray.io/en/latest/tune/index.html).
+A lightweight YOLO model (2.6M parameters) was trained on the dataset using [Ultralytics](https://docs.ultralytics.com/). During model development, experiments were tracked using [Weights & Biases](https://wandb.ai/), and training parameters were tuned using [Ray Tune](https://docs.ray.io/en/latest/tune/index.html).
 
